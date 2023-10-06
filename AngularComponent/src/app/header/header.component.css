@@ -1,0 +1,16 @@
+.header {
+    padding: 30px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.site-slogan {
+    margin: 50px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+p {
+    font-size: 45px;
+}
