@@ -6,6 +6,11 @@ import { ContainerComponent } from './Container/container.component';
 import { NavComponent } from './nav/nav.component';
 import { HeaderComponent } from './header/header.component';
 import { NotificationComponent } from './notification/notification.component';
+import { SearchComponent } from './search/search.component';
+import { FormsModule } from '@angular/forms';
+import { BooksComponent } from './books/books.component';
+import { BookSearchComponent } from './book-search/book-search.component';
+import { BookFilterComponent } from './book-filter/book-filter.component';
 
 @NgModule({
   declarations: [
@@ -13,10 +18,15 @@ import { NotificationComponent } from './notification/notification.component';
     ContainerComponent,
     NavComponent,
     HeaderComponent,
-    NotificationComponent
+    NotificationComponent,
+    SearchComponent,
+    BooksComponent,
+    BookSearchComponent,
+    BookFilterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

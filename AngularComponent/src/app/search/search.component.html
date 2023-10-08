@@ -1,0 +1,9 @@
+<div class="search-div d-flex justify-content-center" [ngClass]="{changeBackground: searchValue != '' }">
+    <span> <b>Search:</b> </span>
+    
+    <!-- <input type="text" (input) = "changeSearchValue($event)"> -->
+    <input type="text" [(ngModel)] = "searchValue"> 
+    <br> <br>
+    
+    <div *ngIf=" searchValue != '' ">You searched for: {{ searchValue }}</div>
+</div>
