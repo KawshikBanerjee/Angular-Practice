@@ -1,0 +1,45 @@
+<div align="center">Demo for View Child <br> <br>
+  <div>
+    <label>DOB: </label>
+    <input type="date" #dobInput (blur)="calculateAge()">
+  </div>
+  <br>
+  <div>
+    <label>Age: </label>
+    <input type="text" #ageInput>
+  </div>
+  <br>
+  <button class="btn btn-more" (click)="onClick()">Show More</button>
+</div>
+
+<br><br>
+<!-- <app-demo></app-demo>
+{{ demoComponent.sayHello() }} -->
+
+<!-- <div class="text-center"> -->
+  <div class="container">
+    <h2>New in Smartphones</h2>
+
+    <div class="more-products">
+      <app-product>
+        <h4 class="title">New from Apple</h4>
+        <!-- <button class="btn btn-more">Show more</button> -->
+      </app-product>
+      <app-product>
+        <h4 class="title">New from Samsung</h4>
+        <!-- <button class="btn btn-more">Show more</button> -->
+      </app-product>
+      <app-product>
+        <h4 class="title">New from Google</h4>
+        <!-- <button class="btn btn-more">Show more</button> -->
+      </app-product>
+      <app-product>
+        <h4 class="title">New from Nothing</h4>
+        <!-- <button class="btn btn-more">Show more</button> -->
+      </app-product>
+
+      
+    </div>
+  </div>
+
+<!-- </div> -->
