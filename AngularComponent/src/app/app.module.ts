@@ -11,6 +11,19 @@ import { FormsModule } from '@angular/forms';
 import { BooksComponent } from './books/books.component';
 import { BookSearchComponent } from './book-search/book-search.component';
 import { BookFilterComponent } from './book-filter/book-filter.component';
+import { AboutComponent } from './about/about.component';
+import { Routes, RouterModule } from '@angular/router';
+import { ErrorComponent } from './error/error.component';
+import { BookGuardService } from './book-guard.service';
+import { AuthService } from './auth.service';
+
+const appRoute: Routes = [
+  {path: '', component: HeaderComponent},
+  {path: 'home', component: HeaderComponent},
+  {path: 'books', component: BooksComponent, canActivate: [BookGuardService]},
+  {path: 'about', component: AboutComponent},
+  {path: '**', component: ErrorComponent} // this should always be the last route
+];
 
 @NgModule({
   declarations: [
@@ -22,13 +35,16 @@ import { BookFilterComponent } from './book-filter/book-filter.component';
     SearchComponent,
     BooksComponent,
     BookSearchComponent,
-    BookFilterComponent
+    BookFilterComponent,
+    AboutComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoute)
   ],
-  providers: [],
+  providers: [BookGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

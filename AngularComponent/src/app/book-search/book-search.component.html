@@ -1,7 +1,7 @@
 <div class="search-div d-flex justify-content-center">
     <span> <b>Search:</b> </span>
     
-    <!-- <input type="text" (input) = "changeSearchValue($event)"> -->
-    <input type="text"> 
+    <!-- [(ngmodel)]="valueToBePassedFromChild" (input)=methodTobeCalledAtChild() -->
+    <input type="text" [(ngModel)]="enteredSearchedValue" (input)=onSearchTextChanged()> 
     <br> <br>
-</div>
+</div> 

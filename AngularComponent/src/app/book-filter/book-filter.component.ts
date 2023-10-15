@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-book-filter',
@@ -12,4 +12,14 @@ export class BookFilterComponent {
   @Input() unavailable: number = 0;
 
 	selectedButtonValue: string = 'All' // value should be same as used in corresponding html file
+
+	// creating custom event
+	@Output()
+	childFilterRadioButtonSelectionChanged: EventEmitter<string> = new EventEmitter<string>();
+ 
+	childOnRadioButtonSelectionChanged() {
+		// emitting button selection change to parent class
+		this.childFilterRadioButtonSelectionChanged.emit(this.selectedButtonValue);
+		// console.log(this.selectedButtonValue);
+	}
 }

@@ -4,10 +4,13 @@
     </div>
 
     <div class="site-menu ms-auto">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Books</a>
-        <a href="#">Cart</a>
-        <a href="#">Contact</a>
+        <a routerLink="/home" routerLinkActive="active">Home</a>
+        <a routerLink="/about" routerLinkActive="active">About</a>
+        <a routerLink="/books" routerLinkActive="active">Books</a>
+        <a routerLink="#" routerLinkActive="active">Cart</a>
+        <a routerLink="#" routerLinkActive="active">Contact</a>
+
+        <a (click)="login()" class="btn btn-success">Login</a>
+        <a (click)="logout()" class="btn btn-danger">Logout</a>
     </div>
 </div>

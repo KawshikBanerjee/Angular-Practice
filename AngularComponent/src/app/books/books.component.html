@@ -1,44 +1,49 @@
-<!-- <div *ngFor="let item of [1, 3, 5, 89, 'kl', true]">
-    <p>The number is {{ item }}</p>
-</div> -->
-
 <div>
     <!-- adding book search+filter components as its child component -->
-    <app-book-search></app-book-search>
-    <app-book-filter [all]="getAllBookCount()"
-										 [available]="getAvailableBookCount()" 
-										 [unavailable]="getUnavailableBookCount()">
-		</app-book-filter>
+    <app-book-search (searchTextChanged)="onSearchTextEntered($event)"></app-book-search>
+    <app-book-filter 
+    [all]="getAllBookCount()"
+	[available]="getAvailableBookCount()" 
+	[unavailable]="getUnavailableBookCount()"
+	(childFilterRadioButtonSelectionChanged)="parentOnFilterRadioButtonChanged($event)">
+	</app-book-filter>
 </div>
 
-<div *ngFor="let p of books">
-    <div class="book-container d-flex justify-content-around">
-        <div class="cover-container">
-            <img src="{{ p.coverPath }}" alt="cover-image" style="max-height: 70px; max-width: 70px;">
-        </div>
-
-        <div>
-        <div class="name-container">
-            <h6> {{ p.name }} </h6> 
-        </div> 
-
-        <div class="detail-container">
-            <div class="details" [ngStyle]="{color: p.isAvailable === 'Available'? 'Green' : 'Red'}">{{ p.isAvailable }}</div>
-            <div class="details">First Published: {{ p.year }}</div>
-            <div class="details">Price: ${{ p.price }}</div>
-        </div>
-        </div>
-
-        <div class="book-options">
-            <button class="btn btn-info">Show Details</button>
-
-            <!-- for available products we show 'buy me' button -->
-            <button class="btn btn-warning" *ngIf=" p.isAvailable === 'Available'; else notifyMe">Buy Now!</button>
-
-            <!-- for unavailable prodcts, we need 'notify me' button -->
-            <ng-template #notifyMe>
-                <button class="btn btn-danger">Notify Me</button>
-            </ng-template>
+<ng-container *ngFor="let p of books">
+<div *ngIf="bookCountRadioButton === 'All' || bookCountRadioButton === p.isAvailable ">
+    <div *ngIf="searchText === '' || p.name.toLowerCase().includes(searchText) ">
+        <div class="book-container d-flex justify-content-around">
+            <div class="cover-container">
+                <img src="{{ p.coverPath }}" alt="cover-image" style="max-height: 70px; max-width: 70px;">
+            </div>
+    
+            <div>
+            <div class="name-container">
+                <h6> {{ p.name }} </h6> 
+            </div> 
+    
+            <div class="detail-container">
+                <div class="details" [ngStyle]="{color: p.isAvailable === 'Available'? 'Green' : 'Red'}">{{ p.isAvailable }}</div>
+                <div class="details">First Published: {{ p.year }}</div>
+                <div class="details">Price: ${{ p.price }}</div>
+            </div>
+            </div>
+    
+            <div class="book-options">
+                <button class="btn btn-info" (click)="selectedBook = p">Show Details</button>
+    
+                <!-- for available products we show 'buy me' button -->
+                <button class="btn btn-warning" *ngIf=" p.isAvailable === 'Available'; else notifyMe">Buy Now!</button>
+    
+                <!-- for unavailable prodcts, we need 'notify me' button -->
+                <ng-template #notifyMe>
+                    <button class="btn btn-danger">Notify Me</button>
+                </ng-template>
+            </div>
         </div>
     </div>
 </div>
+</ng-container>
+
+<br><br>
+<a routerLink="/home">Back to Homepage</a>

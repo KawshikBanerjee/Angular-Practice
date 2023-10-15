@@ -22,3 +22,7 @@ a {
 a:hover {
     color: chocolate;
 }
+
+.active {
+	color: chocolate;
+}

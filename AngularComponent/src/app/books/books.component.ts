@@ -5,7 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css']
 })
+
+
+
 export class BooksComponent {
+
+  selectedBook: any;
+
   books = [
     {id: 1, name: "Harry Potter and the Goblet of Fire", year: 2000, price: 11.05, coverPath: "./assets/bookCover/hp4.jpg", isAvailable: "Available"},
     {id: 2, name: "The Hobbit", year:1937, price: 10.73, coverPath: "./assets/bookCover/hobbit.jpg", isAvailable: "Unavailable"},
@@ -24,5 +30,19 @@ export class BooksComponent {
 
   getUnavailableBookCount() {
     return this.books.filter(book => book.isAvailable === 'Unavailable').length; 
+  }
+
+  bookCountRadioButton: string = 'All';
+  searchText: string = '';
+  
+
+  parentOnFilterRadioButtonChanged(data: string) {
+    this.bookCountRadioButton = data; 
+    // console.log(this.bookCountRadioButton);
+  }
+
+  onSearchTextEntered(searchValue: string) {
+    this.searchText = searchValue.toLowerCase();
+    // console.log(this.searchText);
   }
 }

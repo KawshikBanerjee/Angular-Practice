@@ -1,12 +1,18 @@
 <div class="filter-container d-flex justify-content-center">
     <span>Filter: </span>
 
-    <input type="radio" name="filter" value="All" [(ngModel)]="selectedButtonValue">
+    <input type="radio" name="filter" value="All" 
+    [(ngModel)]="selectedButtonValue"
+    (change)="childOnRadioButtonSelectionChanged()"/>
     <span>{{'All Books('+all+')'}}</span>
 
-    <input type="radio" name="filter" value="Available" [(ngModel)]="selectedButtonValue">
+    <input type="radio" name="filter" value="Available" 
+    [(ngModel)]="selectedButtonValue"
+    (change)="childOnRadioButtonSelectionChanged()"/>
     <span>{{'Available Books('+available+')'}}</span>
 
-    <input type="radio" name="filter" value="Unavailable" [(ngModel)]="selectedButtonValue">
+    <input type="radio" name="filter" value="Unavailable" 
+    [(ngModel)]="selectedButtonValue"
+    (change)="childOnRadioButtonSelectionChanged()"/>
     <span>{{'Unavailable Books('+unavailable+')'}}</span>
 </div>
