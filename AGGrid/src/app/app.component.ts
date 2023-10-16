@@ -3,13 +3,14 @@ import { Component, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { CellClickedEvent, ColDef } from 'ag-grid-community';
 import { Observable } from 'rxjs';
+import { MyCellComponent } from './my-cell/my-cell.component';
+import { MyCustomComponent } from './my-custom/my-custom.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-
 export class AppComponent {
   title = 'AGGrid';
 
@@ -24,29 +25,49 @@ export class AppComponent {
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
 
   ngOnInit() {
-    this.rowData$ = this.http.get<any[]>('https://www.ag-grid.com/example-assets/olympic-winners.json')
+    this.rowData$ = this.http.get<any[]>(
+      'https://www.ag-grid.com/example-assets/olympic-winners.json'
+    );
   }
-  
+
   rowData$!: Observable<any[]>;
 
   colDefs: ColDef[] = [
-    {field: 'athlete'},
-    {field: 'age'},
-    {field: 'country'},
-    {field: 'year'},
-    {field: 'date'},
-    {field: 'sport'},
-    {field: 'gold'},
-    {field: 'silver'},
-    {field: 'bronze'},
-    {field: 'total'},
+    {
+      field: 'athlete',
+      cellRenderer: MyCellComponent,
+      cellRendererParams: {
+        buttonText: 'Name',
+      },
+    },
+    {
+      field: 'age',
+      cellRenderer: MyCellComponent,
+      cellRendererParams: {
+        buttonText: 'Age',
+      },
+    },
+    {
+      field: 'country',
+      headerComponent: MyCustomComponent,
+      headerComponentParams: {
+        name: 'Desher Name',
+      },
+    },
+    { field: 'year' },
+    { field: 'date' },
+    { field: 'sport' },
+    { field: 'gold' },
+    { field: 'silver' },
+    { field: 'bronze' },
+    { field: 'total' },
   ];
 
   defaultColDef: ColDef = {
-    sortable: true, 
+    sortable: true,
     filter: true,
-    enableRowGroup: true
-  }
+    enableRowGroup: true,
+  };
 
   onCellClicked(event: CellClickedEvent) {
     console.log(event);
