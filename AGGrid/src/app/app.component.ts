@@ -14,6 +14,8 @@ import { MyCustomComponent } from './my-custom/my-custom.component';
 export class AppComponent {
   title = 'AGGrid';
 
+  rowData!: Observable<any[]>;
+
   // rowData: any[] = [
   //   { make: 'iPhone', model: '11', price: 699 },
   //   { make: 'iPhone', model: '12', price: 799 },
@@ -25,12 +27,10 @@ export class AppComponent {
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
 
   ngOnInit() {
-    this.rowData$ = this.http.get<any[]>(
+    this.rowData = this.http.get<any[]>(
       'https://www.ag-grid.com/example-assets/olympic-winners.json'
     );
   }
-
-  rowData$!: Observable<any[]>;
 
   colDefs: ColDef[] = [
     {
@@ -42,10 +42,10 @@ export class AppComponent {
     },
     {
       field: 'age',
-      cellRenderer: MyCellComponent,
-      cellRendererParams: {
-        buttonText: 'Age',
-      },
+      // cellRenderer: MyCellComponent,
+      // cellRendererParams: {
+      //   buttonText: 'Age',
+      // },
     },
     {
       field: 'country',
@@ -67,6 +67,7 @@ export class AppComponent {
     sortable: true,
     filter: true,
     enableRowGroup: true,
+    resizable: true,
   };
 
   onCellClicked(event: CellClickedEvent) {
